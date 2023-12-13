@@ -8,20 +8,30 @@ icon_home.src = "./img/Group.svg";
 header.append(text_home, icon_home);
 
 const divMe = document.querySelector(".its_me");
+const userContainer = document.createElement("div");
+divMe.append(userContainer);
+
+const inputWhats = document.createElement("input");
+inputWhats.classList.add('input-whats');
+inputWhats.type = "text";
+inputWhats.placeholder = "What’s happening?";
+divMe.append(inputWhats);
+
+const buttonTweet = document.createElement("button");
+buttonTweet.classList.add("btn-tweet");
+buttonTweet.innerText = "Tweet";
+divMe.appendChild(buttonTweet);
 
 const userPage = (user) => {
-  const userContainer = document.createElement("div");
-  divMe.append(userContainer);
-
   const avatarUser = document.createElement("img");
-  avatarUser.classList.add('img-size');
+  avatarUser.classList.add("img-size");
   avatarUser.src = user.image;
 
-  const userName = document.createElement("h2");
-  userName.classList.add('text-user-name');
-  userName.innerText = user.username;
+  // const userName = document.createElement("h2");
+  // userName.classList.add('text-user-name');
+  // userName.innerText = user.username;
 
-  userContainer.append(avatarUser, userName);
+  userContainer.append(avatarUser);
 };
 
 const fetchPageUser = async (id, callback) => {
@@ -31,11 +41,12 @@ const fetchPageUser = async (id, callback) => {
   callback(userData);
 };
 
-fetchPageUser(18, user => userPage(user));
-
-
+fetchPageUser(18, (user) => userPage(user));
 
 const comments = document.querySelector(".comments");
+const userContainer2 = document.createElement("div");
+userContainer2.classList.add("user-container");
+comments.append(userContainer2);
 
 const showAllUsers = (users, posts) => {
   users.slice(0, 10).forEach((data) => {
@@ -47,22 +58,22 @@ const showAllUsers = (users, posts) => {
     avatar.classList.add("users-avatar");
     avatar.src = data.image;
 
-    const userContainer = document.createElement("div");
-    userContainer.classList.add("user-container");
-    comments.append(userContainer);
+    userContainer2.append(avatar, userName);
 
-    userContainer.append(avatar, userName);
+    
+    posts.slice(0, 10).forEach((post) => {
+      if (data.id === post.id) {
+              const bodyUser = document.createElement("p");
+              bodyUser.classList.add("text-color");
+              bodyUser.innerText = post.body;
+              console.log(bodyUser);
+              const reactionUser = document.createElement("p");
+              reactionUser.classList.add("text-color");
+              reactionUser.innerText = post.reactions;
 
-    posts.slice(0, 1).forEach((post) => {
-      const bodyUser = document.createElement("p");
-      bodyUser.classList.add("text-color");
-      bodyUser.innerText = post.body;
+              userContainer2.append(bodyUser, reactionUser);
+      }
 
-      const reactionUser = document.createElement("p");
-      reactionUser.classList.add("text-color");
-      reactionUser.innerText = post.reactions;
-
-      userContainer.append(bodyUser, reactionUser);
     });
   });
 };

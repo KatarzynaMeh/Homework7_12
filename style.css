@@ -11,25 +11,51 @@
   background-color: black;
 }
 
-.its_me{
+.its_me {
   height: 300px;
-  border-bottom: 0.5px solid white ;
+  border-bottom: 0.5px solid white;
+  position: relative;
 }
 
-.img-size{
+.img-size {
   width: 230px;
   border-radius: 100px;
 }
 
-.text-user-name{
+.text-user-name {
   color: antiquewhite;
   margin: 10px 0 40px 40px;
+}
+
+.input-whats {
+  width: 500px;
+  font-size: 30px;
+  background-color: black;
+  border: none;
+  position: absolute;
+  top: 90px;
+  left: 250px;
+  color: rgb(48, 154, 248);
+}
+
+.btn-tweet {
+  width: 120px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #1d9bf0;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  color: antiquewhite;
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
 }
 
 .home {
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.5px solid white ;
+  border-bottom: 0.5px solid white;
 }
 
 .text {
@@ -43,14 +69,14 @@
   width: 35px;
 }
 
-.users-avatar{
-  width: 60px;
-  height: 60px;
+.users-avatar {
+  width: 80px;
+  height: 80px;
   border-radius: 50px;
   margin: 0 20px;
 }
 
-.text-color{
+.text-color {
   color: white;
   line-height: 40px;
   margin: 0 30px;
