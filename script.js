@@ -149,6 +149,6 @@ fetchAllUsers((users, posts) => showAllUsers(users, posts));
 //   event.preventDefault();
 
 //   const user = {
-//     img: 
+//     img:
 //   }
 // }
