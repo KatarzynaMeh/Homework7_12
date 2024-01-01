@@ -38,6 +38,12 @@
   color: rgb(48, 154, 248);
 }
 
+.icon_meta__img{
+  height: 55px;
+  position: absolute;
+  left: 240px;
+}
+
 .btn-tweet {
   width: 120px;
   height: 60px;

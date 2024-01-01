@@ -12,15 +12,42 @@ const userContainer = document.createElement("div");
 divMe.append(userContainer);
 
 const inputWhats = document.createElement("input");
-inputWhats.classList.add('input-whats');
+inputWhats.classList.add("input-whats");
 inputWhats.type = "text";
 inputWhats.placeholder = "What’s happening?";
 divMe.append(inputWhats);
+
+const icon_meta = document.createElement("img");
+icon_meta.src = "./img/Meta.svg";
+icon_meta.classList.add("icon_meta__img");
+divMe.append(icon_meta);
 
 const buttonTweet = document.createElement("button");
 buttonTweet.classList.add("btn-tweet");
 buttonTweet.innerText = "Tweet";
 divMe.appendChild(buttonTweet);
+
+// buttonTweet.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   const inputData = inputWhats.value;
+
+//   const newPosts = document.createElement("p");
+//   newPosts.classList.add("text-color");
+//   newPosts.innerText = inputData;
+
+//   const avatarUser = document.createElement("img");
+//   avatarUser.classList.add("users-avatar");
+//   avatarUser.src = user.image;
+
+//   const userName = document.createElement("h4");
+//   userName.classList.add("text-color");
+//   userName.innerText = user.username;
+
+//   userContainer2.prepend(avatarUser, userName, newPosts);
+
+// });
+
+// console.log(buttonTweet);
 
 const userPage = (user) => {
   const avatarUser = document.createElement("img");
@@ -60,48 +87,21 @@ const showAllUsers = (users, posts) => {
 
     userContainer2.append(avatar, userName);
 
-    
     posts.slice(0, 10).forEach((post) => {
       if (data.id === post.id) {
-              const bodyUser = document.createElement("p");
-              bodyUser.classList.add("text-color");
-              bodyUser.innerText = post.body;
-              console.log(bodyUser);
-              const reactionUser = document.createElement("p");
-              reactionUser.classList.add("text-color");
-              reactionUser.innerText = post.reactions;
+        const bodyUser = document.createElement("p");
+        bodyUser.classList.add("text-color");
+        bodyUser.innerText = post.body;
+        // console.log(bodyUser);
+        const reactionUser = document.createElement("p");
+        reactionUser.classList.add("text-color");
+        reactionUser.innerText = post.reactions;
 
-              userContainer2.append(bodyUser, reactionUser);
+        userContainer2.append(bodyUser, reactionUser);
       }
-
     });
   });
 };
-
-// const userContainer = document.createElement("div");
-// userContainer.classList.add("user-container");
-// comments.append(userContainer);
-
-// const showAllUsers = (users, posts) => {
-//   users.slice(0, 10).forEach((data) => {
-//     const userName = document.createElement("h4");
-//     userName.innerText = data.userName;
-
-//     const avatar = document.createElement("img");
-//     avatar.classList.add("users-avatar");
-//     avatar.src = data.image;
-//   });
-
-//   posts.slice(0, 10).forEach((post) => {
-//     const bodyUser = document.createElement("p");
-//     bodyUser.innerText = post.body;
-
-//     const reactionUser = document.createElement("p");
-//     reactionUser.innerText = post.reactions;
-//   });
-
-//   userContainer.append(avatar, userName, bodyUser, reactionUser);
-// };
 
 const fetchAllUsers = async (callback) => {
   const [usersResponse, commentsResponse] = await Promise.all([
@@ -114,10 +114,41 @@ const fetchAllUsers = async (callback) => {
 
   callback(responceUsers.users, responceComments.posts);
 };
-// const fetchAllUsers = (callback) => {
-//   fetch(`https://dummyjson.com/users`)
-//     .then((responce) => responce.json())
-//     .then((data) => callback(data.users));
-// };
 
 fetchAllUsers((users, posts) => showAllUsers(users, posts));
+
+// add form
+// const userPostArray = [];
+
+// const showPostUser = (arr) => {
+//   arr.forEach((user) => {
+//     console.log(user);
+//     const containerPostUser = document.createElement('div');
+//     containerPostUser.classList.add('post-user');
+
+//     const inputData = inputWhats.value;
+
+//     const newPosts = document.createElement("p");
+//     newPosts.classList.add("text-color");
+//     newPosts.innerText = inputData;
+
+//     const avatarUser = document.createElement("img");
+//     avatarUser.classList.add("users-avatar");
+//     avatarUser.src = user.image;
+
+//     const userName = document.createElement("h4");
+//     userName.classList.add("text-color");
+//     userName.innerText = user.username;
+
+//     containerPostUser.append(avatarUser, userName, newPosts);
+//     userContainer2.append(containerPostUser);
+//   });
+// };
+
+// form.addEventListener("submit", (event) => {
+//   event.preventDefault();
+
+//   const user = {
+//     img: 
+//   }
+// }
