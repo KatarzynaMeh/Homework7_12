@@ -11,21 +11,24 @@ const divMe = document.querySelector(".its_me");
 const userContainer = document.createElement("div");
 divMe.append(userContainer);
 
-const inputWhats = document.createElement("input");
-inputWhats.classList.add("input-whats");
-inputWhats.type = "text";
-inputWhats.placeholder = "What’s happening?";
-divMe.append(inputWhats);
+// create form element append input to the form
+// const inputWhats = document.createElement("input");
+// inputWhats.classList.add("input-whats");
+// inputWhats.type = "text";
+// inputWhats.placeholder = "What’s happening?";
+// divMe.append(inputWhats);
+
+// const buttonTweet = document.createElement("button");
+// buttonTweet.classList.add("btn-tweet");
+// buttonTweet.innerText = "Tweet";
+// divMe.appendChild(buttonTweet);
+const form = document.querySelector("form");
+const inputW = document.querySelector("#inputWhats");
 
 const icon_meta = document.createElement("img");
 icon_meta.src = "./img/Meta.svg";
 icon_meta.classList.add("icon_meta__img");
 divMe.append(icon_meta);
-
-const buttonTweet = document.createElement("button");
-buttonTweet.classList.add("btn-tweet");
-buttonTweet.innerText = "Tweet";
-divMe.appendChild(buttonTweet);
 
 // buttonTweet.addEventListener("click", (event) => {
 //   event.preventDefault();
@@ -152,3 +155,63 @@ fetchAllUsers((users, posts) => showAllUsers(users, posts));
 //     img:
 //   }
 // }
+
+const showUserPageContainer = document.createElement("div");
+comments.append(showUserPageContainer);
+
+const showUserPage = (user) => {
+  const userName = document.createElement("h4");
+  userName.classList.add("text-color");
+  userName.innerText = user.username;
+
+  const avatar = document.createElement("img");
+  avatar.classList.add("users-avatar");
+  avatar.src = user.image;
+
+  const bodyUser = document.createElement("p");
+  bodyUser.classList.add("text-color");
+  bodyUser.innerText = post;
+
+  showUserPageContainer.append(avatar, userName);
+};
+
+const showInLineMyPost = (user, post) => {
+  const userName = document.createElement("h4");
+  userName.classList.add("text-color");
+  userName.innerText = user.username;
+
+  const avatar = document.createElement("img");
+  avatar.classList.add("users-avatar");
+  avatar.src = user.image;
+
+  // const myPost = post.inputWhats;
+
+  const bodyUser = document.createElement("p");
+  bodyUser.classList.add("text-color");
+  bodyUser.innerText = post;
+
+  userContainer2.append(avatar, userName, bodyUser);
+};
+
+
+const addPostUser = (post, callback) => {
+  fetch("https://dummyjson.com/posts/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: post,
+      userId: 18,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => callback(data));
+};
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const post = inputW.value;
+  console.log(post);
+ 
+  addPostUser(post, (user, post) => showInLineMyPost(user, post));
+});
